@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ config.title }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ config.description }}{% endblock %}">
+    <!-- Open Graph -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ config.description }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ get_url(path='images/social.jpg') }}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Tesseras">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ config.title }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ config.description }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ get_url(path='images/social.jpg') }}{% endblock %}">
+    <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}">
+    {% if config.generate_feeds %}
+        {% for feed in config.feed_filenames %}
+            <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path=feed) }}">
+        {% endfor %}
+    {% endif %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path='images/favicon.png', cachebust=true) }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>
+            <a href="{{ config.base_url }}/{% if lang != config.default_language %}{{ lang }}/{% endif %}">
+                <img src="{{ get_url(path='images/logo-64.png', cachebust=true) }}" alt="Tesseras" width="40" height="40" class="logo">
+                Tesseras
+            </a>
+        </h1>
+        <nav>
+            {% if lang == "pt-br" %}
+                <a href="{{ get_url(path='@/about.pt-br.md') }}">Sobre</a>
+                <a href="{{ get_url(path='@/news/_index.pt-br.md') }}">Notícias</a>
+                <a href="{{ get_url(path='@/releases.pt-br.md') }}">Lançamentos</a>
+                <a href="{{ get_url(path='@/faq.pt-br.md') }}">FAQ</a>
+                <a href="{{ get_url(path='@/subscriptions.pt-br.md') }}">Inscrições</a>
+                <a href="{{ get_url(path='@/contact.pt-br.md') }}">Contato</a>
+            {% else %}
+                <a href="{{ get_url(path='@/about.md') }}">About</a>
+                <a href="{{ get_url(path='@/news/_index.md') }}">News</a>
+                <a href="{{ get_url(path='@/releases.md') }}">Releases</a>
+                <a href="{{ get_url(path='@/faq.md') }}">FAQ</a>
+                <a href="{{ get_url(path='@/subscriptions.md') }}">Subscriptions</a>
+                <a href="{{ get_url(path='@/contact.md') }}">Contact</a>
+            {% endif %}
+        </nav>
+        <nav class="lang-switch">
+            {% if lang == "pt-br" %}
+                <a href="{{ current_url | replace(from='/pt-br/', to='/') }}">English</a> | <strong>Português</strong>
+            {% else %}
+                <strong>English</strong> | <a href="/pt-br{{ current_path }}">Português</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ now() | date(format="%Y") }} Tesseras Project. <a href="/atom.xml">News Feed</a> · <a href="https://git.sr.ht/~ijanc/tesseras">Source</a></p>
+    </footer>
+</body>
+</html>

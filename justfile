@@ -1,0 +1,23 @@
+[private]
+default:
+    @just --list --unsorted
+
+# serve the site
+serve:
+    zola serve
+
+# build the site
+build:
+    zola build
+
+# deploy the site
+deploy server="tesseras-website":
+    ./deploy.sh {{ server }}
+
+# announce a blog post to the mailing list
+announce post:
+    python3 announce.py {{ invocation_directory() }}/{{ post }}
+
+# preview announcement email without sending
+announce-dry post:
+    python3 announce.py --dry-run {{ invocation_directory() }}/{{ post }}

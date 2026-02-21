@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — Tesseras{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+{% block og_title %}{{ page.title }}{% endblock %}
+{% block og_description %}{{ page.description }}{% endblock %}
+{% block twitter_title %}{{ page.title }}{% endblock %}
+{% block twitter_description %}{{ page.description }}{% endblock %}
+
+{% block content %}
+<article>
+    <h2>{{ page.title }}</h2>
+    {{ page.content | safe }}
+</article>
+{% endblock %}
