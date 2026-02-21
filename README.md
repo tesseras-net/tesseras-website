@@ -38,8 +38,8 @@ just deploy
 
 - [Website](https://tesseras.net)
 - [Documentation](https://tesseras.net/book/en/)
-- [Source code](https://git.sr.ht/~ijanc/tesseras-dht) (primary)
-- [GitHub mirror](https://github.com/tesseras-net/tesseras-dht)
+- [Source code](https://git.sr.ht/~ijanc/tesseras-website) (primary)
+- [GitHub mirror](https://github.com/tesseras-net/tesseras-website)
 - [Ticket tracker](https://todo.sr.ht/~ijanc/tesseras)
 - [Mailing lists](https://tesseras.net/subscriptions/)
 
